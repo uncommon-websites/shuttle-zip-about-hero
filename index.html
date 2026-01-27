@@ -11,210 +11,194 @@
             font-family: 'Inter', sans-serif;
             background-color: #F9FAFB;
         }
-        .shuttle-blue {
-            background-color: #0066FF;
+        .shadow-soft {
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
         }
-        .shuttle-blue-text {
-            color: #0066FF;
+        .shadow-glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
         }
-        /* Custom shadow for floating elements */
-        .float-shadow {
-            box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.1), 0 10px 20px -5px rgba(0, 0, 0, 0.04);
-        }
-        /* File icon folded corner */
-        .file-icon {
-            position: relative;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        .file-icon::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            border-top: 20px solid #f3f4f6; 
-            border-left: 20px solid transparent;
-            width: 0;
-            height: 0;
-            border-bottom-left-radius: 4px;
-        }
-        /* Dashed border for upload area */
-        .dashed-box {
-            background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='16' ry='16' stroke='%23D1D5DBFF' stroke-width='2' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+        .fold-corner {
+            background: linear-gradient(to bottom left, transparent 50%, rgba(0,0,0,0.05) 50%);
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col overflow-x-hidden">
+<body class="min-h-screen flex flex-col overflow-x-hidden text-[#1D1D1F]">
 
-    <!-- Navigation Pill -->
-    <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
-        <div class="bg-white rounded-full shadow-sm border border-gray-100 p-1.5 pr-2 pl-2 flex items-center gap-1">
+    <!-- Navigation -->
+    <nav class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+        <div class="bg-white/90 backdrop-blur-sm pl-2 pr-2 py-2 rounded-full shadow-[0_2px_10px_rgba(0,0,0,0.06)] border border-gray-100 flex items-center gap-1">
             <!-- Logo -->
-            <a href="#" class="flex items-center gap-2 px-2">
-                <div class="w-6 h-6 shuttle-blue rounded flex items-center justify-center text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                        <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
+            <a href="#" class="flex items-center gap-2 px-3 py-1 mr-2">
+                <div class="w-6 h-6 bg-[#007AFF] rounded-[6px] flex items-center justify-center text-white">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 2L11 13"></path>
+                        <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
                     </svg>
                 </div>
-                <span class="font-bold text-gray-900 text-sm tracking-tight">Shuttle</span>
+                <span class="font-bold text-base tracking-tight text-gray-900">Shuttle</span>
             </a>
 
             <!-- Links -->
-            <div class="hidden sm:flex items-center gap-1 mx-2">
-                <a href="#" class="text-sm text-gray-600 hover:text-gray-900 px-3 py-1.5 rounded-full hover:bg-gray-50 transition-colors">Updates</a>
-                <a href="#" class="text-sm text-gray-600 hover:text-gray-900 px-3 py-1.5 rounded-full hover:bg-gray-50 transition-colors">Pricing</a>
+            <div class="hidden sm:flex items-center gap-1 mr-2">
+                <a href="#" class="px-4 py-2 text-[15px] font-medium text-gray-600 hover:text-gray-900 transition-colors">Updates</a>
+                <a href="#" class="px-4 py-2 text-[15px] font-medium text-gray-600 hover:text-gray-900 transition-colors">Pricing</a>
             </div>
 
             <!-- CTA -->
-            <a href="#" class="shuttle-blue hover:bg-blue-700 text-white text-sm font-medium px-4 py-1.5 rounded-full transition-colors flex items-center gap-1">
+            <a href="#" class="bg-[#007AFF] hover:bg-blue-600 text-white text-[15px] font-medium px-5 py-2.5 rounded-full transition-colors flex items-center gap-1 shadow-md shadow-blue-500/20">
                 Sign up
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3 h-3">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-0.5">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
                 </svg>
             </a>
         </div>
     </nav>
 
-    <!-- Hero Content -->
-    <main class="flex-grow flex flex-col items-center pt-32 sm:pt-40 px-4 relative max-w-7xl mx-auto w-full">
+    <!-- Main Hero Content -->
+    <main class="flex-grow pt-40 pb-10 relative w-full max-w-[1400px] mx-auto px-4 sm:px-6">
         
-        <!-- Floating Element Left (Giel) -->
-        <div class="hidden lg:block absolute left-10 top-40 transform -rotate-3 hover:rotate-0 transition-transform duration-300 z-10">
-            <div class="bg-white p-1.5 rounded-2xl float-shadow w-48">
-                <div class="relative rounded-xl overflow-hidden bg-red-100">
-                    <img src="https://placehold.co/200x140/ff5733/ff5733" alt="Abstract Art" class="w-full h-32 object-cover opacity-80 mix-blend-multiply">
-                    <!-- Play icon overlay -->
+        <div class="relative max-w-4xl mx-auto text-center z-10">
+            <!-- Headline -->
+            <h1 class="text-5xl sm:text-6xl md:text-[5rem] font-semibold leading-[1.05] tracking-tight text-gray-900 mb-6">
+                New simple<br>in file sharing
+            </h1>
+            
+            <!-- Subheadline -->
+            <p class="text-lg sm:text-xl text-gray-500 max-w-lg mx-auto leading-relaxed mb-10">
+                With Shuttle your work never gets lost. Built for simplicity and powered by AI.
+            </p>
+
+            <!-- Main CTA -->
+            <div class="flex flex-col items-center justify-center gap-3">
+                <button class="bg-[#007AFF] hover:bg-blue-600 text-white text-[17px] font-medium px-8 py-3.5 rounded-full shadow-lg shadow-blue-500/30 transition-transform hover:scale-105 active:scale-95 flex items-center gap-2">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5v14"></path>
+                    </svg>
+                    Upload File
+                </button>
+                <span class="text-xs font-medium text-gray-400">2GB for free</span>
+            </div>
+
+            <!-- Left Floating Element (Video Thumbnail) -->
+            <div class="hidden lg:block absolute top-1/2 -translate-y-1/2 -left-16 xl:-left-32 w-52 h-40 bg-white p-2 rounded-2xl shadow-soft rotate-[-6deg] transition-transform hover:rotate-0 duration-500 z-0">
+                <div class="relative w-full h-full rounded-xl overflow-hidden group">
+                    <!-- Placeholder for Red Abstract Art -->
+                    <img src="https://placehold.co/400x300/ff4433/ff4433" alt="Abstract Art" class="w-full h-full object-cover opacity-90">
+                    <!-- Overlay Pattern simulation -->
+                    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMiIvPgo8L3N2Zz4=')] opacity-30"></div>
+                    
+                    <!-- Play Icon Overlay -->
                     <div class="absolute inset-0 flex items-center justify-center">
-                         <div class="w-8 h-8 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center">
-                            <svg class="w-4 h-4 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                         </div>
+                        <div class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </div>
                     </div>
                 </div>
                 <!-- Badge -->
-                <div class="absolute -bottom-3 -right-3 bg-orange-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-md border-2 border-white">
+                <div class="absolute bottom-4 -right-4 bg-[#FF9500] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md z-10">
                     Giel
                 </div>
             </div>
-        </div>
 
-        <!-- Floating Element Right (Jean) -->
-        <div class="hidden lg:block absolute right-10 top-40 transform rotate-3 hover:rotate-0 transition-transform duration-300 z-10">
-            <div class="bg-white p-4 rounded-2xl float-shadow w-32 h-40 flex flex-col items-center justify-center relative">
-                <!-- Folded corner effect via CSS clip-path or pseudo element simulation -->
-                <div class="absolute top-0 right-0 w-8 h-8 bg-gray-100 rounded-bl-lg"></div>
-                
-                <!-- File Icon Graphic -->
-                <div class="w-14 h-14 bg-gray-800 rounded-xl flex items-center justify-center mb-2 shadow-lg relative overflow-hidden">
-                    <!-- Gradient background for icon -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-gray-700 to-black"></div>
-                    <!-- Play button inside icon -->
-                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center relative z-10 border-2 border-gray-700">
-                        <svg class="w-3 h-3 text-white fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                    <!-- Blue corner accent -->
-                    <div class="absolute top-0 right-0 w-4 h-4 bg-blue-500 rounded-bl-lg"></div>
+            <!-- Right Floating Element (File Icon) -->
+            <div class="hidden lg:block absolute top-1/2 -translate-y-1/2 -right-16 xl:-right-32 w-36 h-44 bg-white rounded-xl shadow-soft rotate-[6deg] transition-transform hover:rotate-0 duration-500 z-0 flex flex-col items-center justify-center relative">
+                <!-- Folded Corner Effect -->
+                <div class="absolute top-0 right-0 w-10 h-10 overflow-hidden">
+                    <div class="absolute top-0 right-0 w-0 h-0 border-t-[24px] border-r-[24px] border-t-[#F3F4F6] border-r-white shadow-sm"></div>
+                    <div class="absolute top-[6px] right-[6px] w-[26px] h-1 bg-black/5 rotate-45 transform origin-top-right blur-[2px]"></div>
                 </div>
                 
-                <span class="text-gray-400 text-sm font-medium mt-2">MP4</span>
+                <!-- Icon Container -->
+                <div class="w-16 h-16 mb-3 rounded-2xl overflow-hidden shadow-sm">
+                    <img src="https://placehold.co/100x100/3b82f6/ffffff?text=▶" alt="Play Icon" class="w-full h-full object-cover">
+                </div>
+                
+                <!-- File Type Text -->
+                <span class="text-gray-400 font-semibold text-sm mt-4">MP4</span>
 
                 <!-- Badge -->
-                <div class="absolute -bottom-2 -right-4 bg-orange-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-md border-2 border-white">
+                <div class="absolute bottom-8 -right-5 bg-[#FF9500] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md z-10">
                     Jean
                 </div>
             </div>
         </div>
 
-        <!-- Main Text -->
-        <div class="text-center max-w-3xl mx-auto z-20">
-            <h1 class="text-5xl md:text-7xl font-medium text-gray-900 tracking-tight leading-[1.1]">
-                New simple<br>in file sharing
-            </h1>
-            <p class="mt-6 text-lg md:text-xl text-gray-500 leading-relaxed max-w-xl mx-auto">
-                With Shuttle your work never gets lost.<br class="hidden sm:block">
-                Built for simplicity and powered by AI.
-            </p>
-
-            <div class="mt-8 flex flex-col items-center">
-                <button class="shuttle-blue hover:bg-blue-700 text-white font-medium text-base px-6 py-3 rounded-full shadow-lg shadow-blue-500/30 transition-all hover:shadow-blue-500/40 flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
-                    Upload File
-                </button>
-                <span class="text-xs text-gray-400 mt-3 font-medium">2GB for free</span>
-            </div>
-        </div>
-
-        <!-- Bottom App Interface -->
-        <div class="w-full mt-20 max-w-6xl mx-auto relative z-20">
-            <div class="bg-white rounded-t-3xl shadow-xl border border-gray-100 min-h-[400px]">
-                <!-- Toolbar -->
-                <div class="flex flex-col sm:flex-row justify-between items-center p-4 border-b border-gray-100 gap-4">
-                    <!-- Left Controls -->
-                    <div class="flex items-center gap-3 w-full sm:w-auto">
-                        <!-- Palet Dropdown -->
-                        <button class="flex items-center gap-2 px-3 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700">
-                            <div class="w-5 h-5 bg-black rounded-full flex items-center justify-center text-white text-[10px] font-bold">P.</div>
-                            Palet
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3 h-3 text-gray-400">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                            </svg>
-                        </button>
-                        <!-- Untitled Dropdown -->
-                        <button class="flex items-center gap-2 px-3 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-gray-500">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
-                            </svg>
-                            Untitled
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3 h-3 text-gray-400">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                            </svg>
-                        </button>
-                    </div>
-
-                    <!-- Right Controls -->
-                    <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
-                        <button class="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M12 12.75l-3.25-3.25m0 0L5.5 12.75m3.25-3.25V3" /> <!-- Wait, download icon usually points down -->
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" transform="scale(1, -1) translate(0, -24)"/> <!-- Flipping for download -->
-                            </svg>
-                            <!-- Let's use a proper download icon -->
-                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M12 3v13.5m0 0l-3.75-3.75M12 16.5l3.75-3.75" />
-                            </svg>
-                            Download
-                        </button>
-                        <button class="flex items-center gap-2 px-4 py-2 shuttle-blue hover:bg-blue-700 text-white rounded-lg transition-colors text-sm font-medium shadow-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 -rotate-45 mb-0.5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-                            </svg>
-                            Share
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Content Area (Upload Zone) -->
-                <div class="p-8 h-96 flex items-center justify-center bg-white rounded-b-3xl">
-                    <div class="dashed-box w-64 h-48 flex flex-col items-center justify-center rounded-2xl bg-gray-50/50">
-                        <!-- Icons in upload area -->
-                        <div class="relative w-16 h-12 mb-4">
-                            <!-- Music Note -->
-                            <svg class="w-6 h-6 text-gray-400 absolute top-0 left-2 transform -rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
-                            <!-- Play Triangle -->
-                            <svg class="w-6 h-6 text-gray-400 absolute top-1 right-2 transform rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                            <!-- Bottom icons (simulated) -->
-                            <div class="absolute bottom-0 left-0 right-0 flex justify-center gap-4 opacity-50">
-                                <div class="w-4 h-4 border-2 border-gray-400 rounded-sm"></div>
-                                <div class="w-4 h-4 border-2 border-gray-400 rounded-sm"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </main>
+
+    <!-- Bottom App Interface Mockup -->
+    <section class="w-full max-w-[1100px] mx-auto px-4 pb-10">
+        <div class="bg-white rounded-t-[2.5rem] shadow-[0_-20px_60px_-15px_rgba(0,0,0,0.03)] border border-gray-100 min-h-[600px] flex flex-col">
+            
+            <!-- App Toolbar -->
+            <div class="flex items-center justify-between px-6 py-4 border-b border-gray-50">
+                <!-- Left Controls -->
+                <div class="flex items-center gap-4">
+                    <!-- Palet Dropdown -->
+                    <button class="flex items-center gap-2 hover:bg-gray-50 px-2 py-1.5 rounded-lg transition-colors">
+                        <div class="w-6 h-6 bg-black rounded-full flex items-center justify-center text-white text-[10px] font-bold">P</div>
+                        <span class="text-sm font-semibold text-gray-800">Palet</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400">
+                            <path d="m6 9 6 6 6-6"></path>
+                        </svg>
+                    </button>
+                    
+                    <div class="h-4 w-px bg-gray-200"></div>
+
+                    <!-- Untitled Dropdown -->
+                    <button class="flex items-center gap-2 hover:bg-gray-50 px-2 py-1.5 rounded-lg transition-colors">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500">
+                            <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"></path>
+                        </svg>
+                        <span class="text-sm font-medium text-gray-700">Untitled</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400">
+                            <path d="m6 9 6 6 6-6"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Right Controls -->
+                <div class="flex items-center gap-3">
+                    <button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" x2="12" y1="15" y2="3"></line>
+                        </svg>
+                        Download
+                    </button>
+                    <button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#007AFF] text-white text-sm font-medium hover:bg-blue-600 transition-colors shadow-sm">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" x2="11" y1="2" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                        Share
+                    </button>
+                </div>
+            </div>
+
+            <!-- Empty State Content -->
+            <div class="flex-grow flex items-center justify-center p-10">
+                <div class="w-72 h-56 border-2 border-dashed border-gray-300 rounded-2xl flex flex-col items-center justify-center gap-6 relative">
+                    <!-- Icons inside dashed box -->
+                    <div class="relative w-20 h-12">
+                        <svg class="absolute left-0 top-0 text-gray-400 w-8 h-8 transform -rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18V5l12-2v13"></path>
+                            <circle cx="6" cy="18" r="3"></circle>
+                            <circle cx="18" cy="16" r="3"></circle>
+                        </svg>
+                        <svg class="absolute right-0 bottom-0 text-gray-400 w-8 h-8 transform rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
 
 </body>
 </html>
