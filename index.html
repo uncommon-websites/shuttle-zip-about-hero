@@ -3,202 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shuttle Hero Section</title>
+    <title>Shuttle - File Sharing Hero</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#007AFF', // Bright iOS-like blue
+                            dark: '#111111',
+                            gray: '#F6F6F8', // Light background gray
+                            orange: '#F97316',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 20px 40px -10px rgba(0, 0, 0, 0.05)',
+                        'glow': '0 0 20px rgba(0, 122, 255, 0.15)',
+                        'float': '0 30px 60px -12px rgba(50, 50, 93, 0.15), 0 18px 36px -18px rgba(0, 0, 0, 0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F9FAFB;
+        /* Typography Utilities */
+        .text-balance { text-wrap: balance; }
+        .text-pretty { text-wrap: pretty; }
+        
+        /* Animation Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+                filter: blur(4px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
         }
-        .shadow-soft {
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-        .shadow-glow {
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+                filter: blur(4px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+                filter: blur(0);
+            }
         }
-        .fold-corner {
-            background: linear-gradient(to bottom left, transparent 50%, rgba(0,0,0,0.05) 50%);
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Animation Classes */
+        .animate-fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        .animate-fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        .animate-scale-in {
+            opacity: 0;
+            animation: scaleIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-float-delayed {
+            animation: float 7s ease-in-out infinite 1s;
+        }
+
+        /* Delays */
+        .delay-0 { animation-delay: 0ms; }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-600 { animation-delay: 600ms; }
+        .delay-700 { animation-delay: 700ms; }
+        .delay-800 { animation-delay: 800ms; }
+
+        /* Custom Scrollbar hide */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col overflow-x-hidden text-[#1D1D1F]">
+<body class="bg-brand-gray text-gray-900 font-sans antialiased overflow-x-hidden min-h-screen flex flex-col">
 
-    <!-- Navigation -->
-    <nav class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
-        <div class="bg-white/90 backdrop-blur-sm pl-2 pr-2 py-2 rounded-full shadow-[0_2px_10px_rgba(0,0,0,0.06)] border border-gray-100 flex items-center gap-1">
-            <!-- Logo -->
-            <a href="#" class="flex items-center gap-2 px-3 py-1 mr-2">
-                <div class="w-6 h-6 bg-[#007AFF] rounded-[6px] flex items-center justify-center text-white">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 2L11 13"></path>
-                        <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+    <!-- Navbar -->
+    <div class="fixed top-6 left-0 right-0 z-50 flex justify-center animate-fade-in-up delay-0">
+        <nav class="bg-white/90 backdrop-blur-md border border-white/50 shadow-sm rounded-full px-2 py-2 pl-4 flex items-center gap-1 sm:gap-6">
+            <!-- Logo Area -->
+            <a href="#" class="flex items-center gap-2 mr-2">
+                <div class="w-6 h-6 bg-brand-blue rounded flex items-center justify-center text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 transform -rotate-45">
+                        <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
                     </svg>
                 </div>
-                <span class="font-bold text-base tracking-tight text-gray-900">Shuttle</span>
+                <span class="font-bold text-gray-900 text-sm tracking-tight">Shuttle</span>
             </a>
 
-            <!-- Links -->
-            <div class="hidden sm:flex items-center gap-1 mr-2">
-                <a href="#" class="px-4 py-2 text-[15px] font-medium text-gray-600 hover:text-gray-900 transition-colors">Updates</a>
-                <a href="#" class="px-4 py-2 text-[15px] font-medium text-gray-600 hover:text-gray-900 transition-colors">Pricing</a>
+            <!-- Links (Hidden on mobile) -->
+            <div class="hidden sm:flex items-center gap-6 text-sm font-medium text-gray-600">
+                <a href="#" class="hover:text-gray-900 transition-colors">Updates</a>
+                <a href="#" class="hover:text-gray-900 transition-colors">Pricing</a>
             </div>
 
             <!-- CTA -->
-            <a href="#" class="bg-[#007AFF] hover:bg-blue-600 text-white text-[15px] font-medium px-5 py-2.5 rounded-full transition-colors flex items-center gap-1 shadow-md shadow-blue-500/20">
+            <a href="#" class="bg-brand-blue hover:bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-full transition-all flex items-center gap-1 shadow-glow">
                 Sign up
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-0.5">
-                    <path d="M5 12h14"></path>
-                    <path d="m12 5 7 7-7 7"></path>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3 h-3">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
             </a>
-        </div>
-    </nav>
+        </nav>
+    </div>
 
-    <!-- Main Hero Content -->
-    <main class="flex-grow pt-40 pb-10 relative w-full max-w-[1400px] mx-auto px-4 sm:px-6">
+    <!-- Main Hero Section -->
+    <main class="flex-grow flex flex-col items-center justify-start pt-32 sm:pt-40 px-4 relative max-w-[1400px] mx-auto w-full">
         
-        <div class="relative max-w-4xl mx-auto text-center z-10">
-            <!-- Headline -->
-            <h1 class="text-5xl sm:text-6xl md:text-[5rem] font-semibold leading-[1.05] tracking-tight text-gray-900 mb-6">
-                New simple<br>in file sharing
-            </h1>
-            
-            <!-- Subheadline -->
-            <p class="text-lg sm:text-xl text-gray-500 max-w-lg mx-auto leading-relaxed mb-10">
-                With Shuttle your work never gets lost. Built for simplicity and powered by AI.
-            </p>
-
-            <!-- Main CTA -->
-            <div class="flex flex-col items-center justify-center gap-3">
-                <button class="bg-[#007AFF] hover:bg-blue-600 text-white text-[17px] font-medium px-8 py-3.5 rounded-full shadow-lg shadow-blue-500/30 transition-transform hover:scale-105 active:scale-95 flex items-center gap-2">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M5 12h14"></path>
-                        <path d="M12 5v14"></path>
-                    </svg>
-                    Upload File
-                </button>
-                <span class="text-xs font-medium text-gray-400">2GB for free</span>
-            </div>
-
-            <!-- Left Floating Element (Video Thumbnail) -->
-            <div class="hidden lg:block absolute top-1/2 -translate-y-1/2 -left-16 xl:-left-32 w-52 h-40 bg-white p-2 rounded-2xl shadow-soft rotate-[-6deg] transition-transform hover:rotate-0 duration-500 z-0">
-                <div class="relative w-full h-full rounded-xl overflow-hidden group">
-                    <!-- Placeholder for Red Abstract Art -->
-                    <img src="https://placehold.co/400x300/ff4433/ff4433" alt="Abstract Art" class="w-full h-full object-cover opacity-90">
-                    <!-- Overlay Pattern simulation -->
-                    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMiIvPgo8L3N2Zz4=')] opacity-30"></div>
-                    
-                    <!-- Play Icon Overlay -->
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2">
-                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
+        <!-- Floating Left Element (Image) -->
+        <div class="hidden lg:block absolute left-10 top-1/2 -translate-y-2/3 w-48 animate-scale-in delay-500 animate-float">
+            <div class="relative group">
+                <img src="https://placehold.co/400x300/ff4d4d/ff4d4d" alt="Abstract Art" class="rounded-xl shadow-float transform transition-transform duration-500 group-hover:scale-105 w-full h-auto object-cover aspect-[4/3]">
                 <!-- Badge -->
-                <div class="absolute bottom-4 -right-4 bg-[#FF9500] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md z-10">
+                <div class="absolute -bottom-3 -right-3 bg-brand-orange text-white text-xs font-medium px-3 py-1.5 rounded-full shadow-lg z-10">
                     Giel
                 </div>
+                <!-- Play icon overlay simulation -->
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/40">
+                        <svg class="w-4 h-4 text-white fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
             </div>
+        </div>
 
-            <!-- Right Floating Element (File Icon) -->
-            <div class="hidden lg:block absolute top-1/2 -translate-y-1/2 -right-16 xl:-right-32 w-36 h-44 bg-white rounded-xl shadow-soft rotate-[6deg] transition-transform hover:rotate-0 duration-500 z-0 flex flex-col items-center justify-center relative">
-                <!-- Folded Corner Effect -->
-                <div class="absolute top-0 right-0 w-10 h-10 overflow-hidden">
-                    <div class="absolute top-0 right-0 w-0 h-0 border-t-[24px] border-r-[24px] border-t-[#F3F4F6] border-r-white shadow-sm"></div>
-                    <div class="absolute top-[6px] right-[6px] w-[26px] h-1 bg-black/5 rotate-45 transform origin-top-right blur-[2px]"></div>
+        <!-- Floating Right Element (File Icon) -->
+        <div class="hidden lg:block absolute right-10 top-1/2 -translate-y-2/3 w-40 animate-scale-in delay-600 animate-float-delayed">
+            <div class="relative group">
+                <!-- File Shape -->
+                <div class="bg-white rounded-xl shadow-float p-4 w-full aspect-[3/4] flex flex-col items-center justify-center relative overflow-hidden transition-transform duration-500 group-hover:scale-105">
+                    <!-- Folded Corner Effect (CSS) -->
+                    <div class="absolute top-0 right-0 w-8 h-8 bg-gray-100 rounded-bl-xl shadow-sm"></div>
+                    
+                    <!-- Icon Content -->
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-gray-800 to-black flex items-center justify-center shadow-lg mb-2 relative overflow-hidden">
+                        <!-- Using an image for the icon content as requested -->
+                        <img src="https://placehold.co/100x100/333333/ffffff?text=MP4" class="w-full h-full object-cover opacity-80" alt="File Icon">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-8 h-8 bg-brand-blue rounded-full flex items-center justify-center shadow-lg border-2 border-white">
+                                <svg class="w-3 h-3 text-white fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="text-gray-400 text-sm font-medium mt-2">MP4</span>
                 </div>
                 
-                <!-- Icon Container -->
-                <div class="w-16 h-16 mb-3 rounded-2xl overflow-hidden shadow-sm">
-                    <img src="https://placehold.co/100x100/3b82f6/ffffff?text=▶" alt="Play Icon" class="w-full h-full object-cover">
-                </div>
-                
-                <!-- File Type Text -->
-                <span class="text-gray-400 font-semibold text-sm mt-4">MP4</span>
-
                 <!-- Badge -->
-                <div class="absolute bottom-8 -right-5 bg-[#FF9500] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md z-10">
+                <div class="absolute bottom-8 -right-4 bg-brand-orange text-white text-xs font-medium px-3 py-1.5 rounded-full shadow-lg z-10">
                     Jean
                 </div>
             </div>
         </div>
 
-    </main>
-
-    <!-- Bottom App Interface Mockup -->
-    <section class="w-full max-w-[1100px] mx-auto px-4 pb-10">
-        <div class="bg-white rounded-t-[2.5rem] shadow-[0_-20px_60px_-15px_rgba(0,0,0,0.03)] border border-gray-100 min-h-[600px] flex flex-col">
+        <!-- Hero Content -->
+        <div class="text-center max-w-3xl mx-auto z-10 mb-16">
+            <h1 class="text-5xl sm:text-6xl md:text-7xl font-semibold text-gray-900 tracking-tight leading-[1.1] mb-6 text-balance animate-fade-in-up delay-100">
+                New simple<br class="hidden sm:block" />
+                in file sharing
+            </h1>
             
-            <!-- App Toolbar -->
-            <div class="flex items-center justify-between px-6 py-4 border-b border-gray-50">
-                <!-- Left Controls -->
-                <div class="flex items-center gap-4">
-                    <!-- Palet Dropdown -->
-                    <button class="flex items-center gap-2 hover:bg-gray-50 px-2 py-1.5 rounded-lg transition-colors">
-                        <div class="w-6 h-6 bg-black rounded-full flex items-center justify-center text-white text-[10px] font-bold">P</div>
-                        <span class="text-sm font-semibold text-gray-800">Palet</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400">
-                            <path d="m6 9 6 6 6-6"></path>
-                        </svg>
-                    </button>
-                    
-                    <div class="h-4 w-px bg-gray-200"></div>
+            <p class="text-lg sm:text-xl text-gray-500 leading-relaxed mb-10 text-pretty max-w-xl mx-auto animate-fade-in-up delay-200">
+                With Shuttle your work never gets lost.<br class="hidden sm:block" />
+                Built for simplicity and powered by AI.
+            </p>
 
-                    <!-- Untitled Dropdown -->
-                    <button class="flex items-center gap-2 hover:bg-gray-50 px-2 py-1.5 rounded-lg transition-colors">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500">
-                            <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"></path>
-                        </svg>
-                        <span class="text-sm font-medium text-gray-700">Untitled</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400">
-                            <path d="m6 9 6 6 6-6"></path>
-                        </svg>
-                    </button>
-                </div>
-
-                <!-- Right Controls -->
-                <div class="flex items-center gap-3">
-                    <button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7 10 12 15 17 10"></polyline>
-                            <line x1="12" x2="12" y1="15" y2="3"></line>
-                        </svg>
-                        Download
-                    </button>
-                    <button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#007AFF] text-white text-sm font-medium hover:bg-blue-600 transition-colors shadow-sm">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="22" x2="11" y1="2" y2="13"></line>
-                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                        </svg>
-                        Share
-                    </button>
-                </div>
+            <div class="flex flex-col items-center gap-3 animate-fade-in-up delay-300">
+                <button class="bg-brand-blue hover:bg-blue-600 text-white text-base font-medium px-8 py-3.5 rounded-full shadow-lg shadow-blue-500/30 transition-all hover:scale-105 active:scale-95 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    Upload File
+                </button>
+                <span class="text-xs text-gray-400 font-medium">2GB for free</span>
             </div>
+        </div>
 
-            <!-- Empty State Content -->
-            <div class="flex-grow flex items-center justify-center p-10">
-                <div class="w-72 h-56 border-2 border-dashed border-gray-300 rounded-2xl flex flex-col items-center justify-center gap-6 relative">
-                    <!-- Icons inside dashed box -->
-                    <div class="relative w-20 h-12">
-                        <svg class="absolute left-0 top-0 text-gray-400 w-8 h-8 transform -rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 18V5l12-2v13"></path>
-                            <circle cx="6" cy="18" r="3"></circle>
-                            <circle cx="18" cy="16" r="3"></circle>
-                        </svg>
-                        <svg class="absolute right-0 bottom-0 text-gray-400 w-8 h-8 transform rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                        </svg>
+        <!-- Dashboard UI Preview (Bottom Section) -->
+        <div class="w-full max-w-6xl mx-auto animate-fade-in-up delay-400 perspective-1000">
+            <div class="bg-white rounded-t-[2rem] shadow-2xl border border-gray-100 min-h-[400px] p-4 sm:p-6 relative overflow-hidden">
+                
+                <!-- Toolbar -->
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
+                    <!-- Left Tools -->
+                    <div class="flex items-center gap-3 w-full sm:w-auto">
+                        <!-- Dropdown 1 -->
+                        <button class="flex items-center gap-2 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-full px-1.5 py-1.5 pr-3 transition-colors">
+                            <div class="w-7 h-7 bg-black rounded-full flex items-center justify-center text-white text-xs font-bold">P</div>
+                            <span class="text-sm font-medium text-gray-700">Palet</span>
+                            <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        
+                        <!-- Dropdown 2 -->
+                        <button class="flex items-center gap-2 bg-white hover:bg-gray-50 border border-gray-200 rounded-full px-3 py-1.5 transition-colors">
+                            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                            <span class="text-sm font-medium text-gray-700">Untitled</span>
+                            <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                    </div>
+
+                    <!-- Right Actions -->
+                    <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+                        <button class="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                            Download
+                        </button>
+                        <button class="flex items-center gap-2 px-4 py-2 rounded-full bg-brand-blue text-white text-sm font-medium hover:bg-blue-600 transition-colors shadow-md shadow-blue-500/20">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                            Share
+                        </button>
                     </div>
                 </div>
-            </div>
 
+                <!-- Empty State / Content Area -->
+                <div class="flex flex-col items-center justify-center h-64 sm:h-80 border-2 border-dashed border-gray-200 rounded-2xl bg-gray-50/50 relative overflow-hidden">
+                    <!-- Decorative Dotted Box in Center Bottom -->
+                    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 h-40 border-2 border-dashed border-gray-300 rounded-t-xl bg-white flex flex-col items-center justify-center pt-8">
+                        <div class="flex gap-6 mb-4 opacity-40">
+                            <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
+                            <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <!-- Cutoff effect at bottom -->
+                        <div class="w-full h-12 bg-gradient-to-t from-white to-transparent absolute bottom-0"></div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </section>
+
+    </main>
 
 </body>
 </html>
